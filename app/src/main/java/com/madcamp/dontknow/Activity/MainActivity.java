@@ -22,7 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ParentFragment.OnFragmentInteractionListener, ChildFragment.OnFragmentInteractionListener {
 
-    public static String myTel;
+    public static String myTel="105545";
 
     private Toolbar toolbar;
     private TabLayout tabLayout;

@@ -34,8 +34,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ChildFragment extends Fragment {
+    String owner_tel ="103531";
     String owner_name = "a";
-    String user_tel= "1234";
 //    public ChildFragment(String string){
 //        owner_name = string;
 //    }
@@ -55,31 +55,56 @@ public class ChildFragment extends Fragment {
         Tab1RecyclerViewAdapter tab1_recyclerView_adapter = new Tab1RecyclerViewAdapter();
 
 
-        Bitmap sample_bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.sample_image);
+        Bitmap sample_bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.download_1);
         for(int i=0; i<10; i++) {
             tab1_recyclerView_adapter.addItem(new UserGallery(sample_bitmap));
         }
 
         recyclerView.setLayoutManager(tab1_recyclerView_layoutManager);
         recyclerView.setAdapter(tab1_recyclerView_adapter);
-        return view;
 
-    }
+        owner_tel = getArguments().getString("owner_tel");
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        String url = "http://52.231.68.157:8080/api/profiles/" + user_tel;
+        String url = "http://52.231.68.157:8080/api/profiles/" + owner_tel;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 try{
-                    System.out.println(response.getString("name"));
+//                    response.getJSONArray("registered").length();
+//                    response.getJSONArray("registered").getString(0);
                     owner_name = response.getString("name");
+                } catch(JSONException e){
 
+                }
+
+            }}, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        queue.add(jsonObjectRequest);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        String url = "http://52.231.68.157:8080/api/profiles/" + MainActivity.myTel;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try{
+                    response.getJSONArray("registered").length();
+                    response.getJSONArray("registered").getString(0);
+//                    owner_name = response.getString("name");
                     TextView textView = getView().findViewById(R.id.owner_name);
                     textView.setText(owner_name);
                 } catch(JSONException e){
@@ -91,7 +116,6 @@ public class ChildFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
             }
         });
-
         queue.add(jsonObjectRequest);
 
 
