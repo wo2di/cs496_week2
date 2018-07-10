@@ -34,11 +34,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ChildFragment extends Fragment {
-    String owner_tel ="103531";
-    String owner_name = "a";
-//    public ChildFragment(String string){
-//        owner_name = string;
-//    }
+    String owner_tel ="owner_tel";
+    String owner_name = "owner_name";
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,9 +70,9 @@ public class ChildFragment extends Fragment {
             public void onResponse(JSONObject response) {
 
                 try{
-//                    response.getJSONArray("registered").length();
-//                    response.getJSONArray("registered").getString(0);
                     owner_name = response.getString("name");
+                    TextView textView = getView().findViewById(R.id.owner_name);
+                    textView.setText(owner_name);
                 } catch(JSONException e){
 
                 }
@@ -93,39 +90,11 @@ public class ChildFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        String url = "http://52.231.68.157:8080/api/profiles/" + MainActivity.myTel;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                try{
-                    response.getJSONArray("registered").length();
-                    response.getJSONArray("registered").getString(0);
-//                    owner_name = response.getString("name");
-                    TextView textView = getView().findViewById(R.id.owner_name);
-                    textView.setText(owner_name);
-                } catch(JSONException e){
-
-                }
-
-            }}, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        });
-        queue.add(jsonObjectRequest);
-
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
         super.onActivityCreated(savedInstanceState);
-
     }
 
     @Override
@@ -145,16 +114,12 @@ public class ChildFragment extends Fragment {
         mListener = null;
     }
 
-
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void messageFromChildFragment(Uri uri);
     }
 
-
-
     class Tab1RecyclerViewAdapter extends RecyclerView.Adapter<Tab1RecyclerViewAdapter.Tab1RecyclerViewHolder>{
-
         ArrayList<UserGallery> userGalleries = new ArrayList<>();
 
         @NonNull
