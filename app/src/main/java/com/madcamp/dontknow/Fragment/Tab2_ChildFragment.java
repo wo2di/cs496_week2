@@ -19,12 +19,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.madcamp.dontknow.Activity.MainActivity;
 import com.madcamp.dontknow.R;
-import android.support.v4.app.Fragment;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,7 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ChildFragment extends Fragment {
+public class Tab2_ChildFragment extends Fragment {
     String owner_tel ="owner_tel";
     String owner_name = "owner_name";
 
@@ -43,7 +41,7 @@ public class ChildFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_child, container, false);
+        View view = inflater.inflate(R.layout.tab2_fragment_child, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.tab1_recyclerView);
 
         LinearLayoutManager tab1_recyclerView_layoutManager = new LinearLayoutManager(getContext());

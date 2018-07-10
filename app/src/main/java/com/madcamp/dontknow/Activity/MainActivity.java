@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
-import com.madcamp.dontknow.Fragment.ParentFragment;
-import com.madcamp.dontknow.Fragment.ChildFragment;
+import com.madcamp.dontknow.Fragment.Tab2_ParentFragment;
+import com.madcamp.dontknow.Fragment.Tab2_ChildFragment;
 import com.madcamp.dontknow.R;
 
 import android.support.design.widget.TabLayout;
@@ -20,7 +19,7 @@ import android.support.design.widget.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ParentFragment.OnFragmentInteractionListener, ChildFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements Tab2_ParentFragment.OnFragmentInteractionListener, Tab2_ChildFragment.OnFragmentInteractionListener {
 
     public static String myTel="105545";
 
@@ -44,14 +43,14 @@ public class MainActivity extends AppCompatActivity implements ParentFragment.On
 
         // Begin the transaction
 //        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        ft.replace(R.id.parent_fragment_container, new ParentFragment());
+//        ft.replace(R.id.parent_fragment_container, new Tab2_ParentFragment());
 //        ft.commit();
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ParentFragment(), "ONE");
-        adapter.addFragment(new ParentFragment(), "TWO");
+        adapter.addFragment(new Tab2_ParentFragment(), "ONE");
+        adapter.addFragment(new Tab2_ParentFragment(), "TWO");
 
         viewPager.setAdapter(adapter);
     }

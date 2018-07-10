@@ -16,10 +16,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.madcamp.dontknow.Activity.MainActivity;
 import com.madcamp.dontknow.R;
-import android.support.v4.app.Fragment;
+
 import android.support.v4.app.FragmentTransaction;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParentFragment extends Fragment {
+public class Tab2_ParentFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
@@ -61,7 +59,7 @@ public class ParentFragment extends Fragment {
         queue.add(jsonObjectRequest);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_parent, container, false);
+        return inflater.inflate(R.layout.tab2_fragment_parent, container, false);
 
     }
 
@@ -72,7 +70,7 @@ public class ParentFragment extends Fragment {
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 
         for(int i = 0; i < _num_registered; i++){
-            Fragment childFragment = new ChildFragment();
+            Fragment childFragment = new Tab2_ChildFragment();
             Bundle bundle = new Bundle();
             bundle.putString("owner_tel", num_registered.get(i));
             childFragment.setArguments(bundle);
